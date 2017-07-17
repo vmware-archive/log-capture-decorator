@@ -13,3 +13,12 @@ be delivered).
 The log handling sidecar process is a minimal Python implementation for demonstration purposes only. A real
 implementation would replace it with the appropriate agent code.
 
+
+## Use
+
+This example decorator is triggered by the presence of a tag `logdrain`. 
+
+```bash
+cf cups logdrain_trigger -p '{"tags":["logdrain"]}'
+cf bind-service MY_APP logdrain_trigger
+```
