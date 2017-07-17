@@ -22,10 +22,9 @@ def main():
 	appinfo = get_application_info()
 	service = find_logdrain_service(appinfo)
 	if service != None:
-		for line in sys.stdin:
-			# TODO - look at argv and send to stdout/stderr based on arg value
+		while True:
+			line = sys.stdin.readline()
 			print '[log-capture]', line
-			sys.stdout.flush()
 
 def detect():
 	appinfo = get_application_info()
