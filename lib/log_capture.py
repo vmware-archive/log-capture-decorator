@@ -14,18 +14,27 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+from __future__ import print_function
+
 import os
 import sys
 import json
 
 def main():
 	stream = sys.argv[1]
+	print("Capturing logs on {}".format(stream))
+
 	appinfo = get_application_info()
 	service = find_logdrain_service(appinfo)
 	if service != None:
 		while True:
 			line = sys.stdin.readline()
-			print '[log-capture on {}]'.format(stream), line
+			# on push, sys.stdin reads tons of blank lines
+			if line.strip() != "":
+				if stream == 'stderr':
+					print('[log-capture on {}]'.format(stream), line, file=sys.stderr)
+				else:
+					print('[log-capture on {}]'.format(stream), line, file=sys.stdout)
 
 def detect():
 	appinfo = get_application_info()
@@ -33,7 +42,7 @@ def detect():
 	if service == None:
 		sys.exit(1)
 	else:
-		print 'log-capture'
+		print('log-capture')
 		sys.exit(0)
 
 # Get Application Info
@@ -46,7 +55,7 @@ def get_application_info():
 	vcap_application = json.loads(os.getenv('VCAP_APPLICATION', '{}'))
 	appinfo['name'] = vcap_application.get('application_name')
 	if appinfo['name'] == None:
-		print >> sys.stderr, "VCAP_APPLICATION must specify application_name"
+		print("VCAP_APPLICATION must specify application_name", file=sys.stderr)
 		sys.exit(1)
 	appinfo['instance'] = os.getenv('CF_INSTANCE_INDEX')
 	appinfo['hostname'] = vcap_application.get('application_uris')[0]
