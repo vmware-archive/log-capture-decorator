@@ -19,12 +19,13 @@ import sys
 import json
 
 def main():
+	stream = sys.argv[1]
 	appinfo = get_application_info()
 	service = find_logdrain_service(appinfo)
 	if service != None:
 		while True:
 			line = sys.stdin.readline()
-			print '[log-capture]', line
+			print '[log-capture on {}]'.format(stream), line
 
 def detect():
 	appinfo = get_application_info()
