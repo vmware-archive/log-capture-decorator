@@ -1,5 +1,14 @@
 # Log Capture Decorator
 
+> <b>NOTE: Meta-buildback is being deprecated</b><br/>
+> Changes to the core CloudFoundry lifecycle process are making it hard to guarantee
+> on-going compatibility with meta-buildpack and decorators. Some of the use cases for
+> decorators can now be solved by leveraging the new
+> [supply buildpack](https://docs.cloudfoundry.org/buildpacks/understand-buildpacks.html#supply-script)
+> functionality. If you are using meta-buildpack today and need to find an alternative,
+> or have a use case that would have been addressed by decorators, please open an issue
+> on this repo and we are happy to help you look for the right way to accomplish your task.
+
 This is a [decorator](https://github.com/cf-platform-eng/meta-buildpack/blob/master/README.md#decorators) buildpack
 for Cloud Foundry that demonstrates how to capture application log information *for any programming
 language* supported by the platform, and requiring *zero application code changes*.
