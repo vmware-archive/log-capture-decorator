@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-# bin/detect <build-dir>
 
 # log-capture-decorator
 #
@@ -17,6 +16,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# We are a decorator, not a buildpack, so we always decline to build
+# We are a decorator, not a language buildpack, so we always decline to build
+# User needs to opt-in with multi-buildpack
+
+echo "This is a supplemental buildpack and should only be used with multiple buildpacks"
 
 exit 1

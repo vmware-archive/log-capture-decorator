@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+set -ex
+
+root_dir=$(dirname $0)
+build_path=$1
+cache_path=$2
+deps_path=$3
+index_path=$4
+
+mkdir $deps_path/$index_path/profile.d
+
+cp $root_dir/../lib/log_capture.py $deps_path/$index_path/
+
+cp $root_dir/../lib/log_capture.sh $deps_path/$index_path/profile.d
+sed s/__BUILDPACK_INDEX__/$index_path/g $deps_path/$index_path/profile.d/log_capture.sh -i

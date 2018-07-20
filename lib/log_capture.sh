@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # log-capture-decorator
 #
@@ -23,5 +23,5 @@
 # worked. A real implementation of the sidecar might forward the messages
 # to a log drain, and make the echo-back optional.
 
-exec  > >(python ~/log_capture/log_capture.py stdout)
-exec 2> >(python ~/log_capture/log_capture.py stderr)
+exec  > >(python $DEPS_DIR/__BUILDPACK_INDEX__/log_capture.py stdout)
+exec 2> >(python $DEPS_DIR/__BUILDPACK_INDEX__/log_capture.py stderr)
