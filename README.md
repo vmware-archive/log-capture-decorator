@@ -1,3 +1,5 @@
+# log-capture-decorator is no longer actively maintained by VMware.
+
 # Log Capture Decorator
 
 This is a sidecar for multi-buildpack. When used, all log messages will have a prefix. 
